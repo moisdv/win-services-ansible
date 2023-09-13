@@ -14,7 +14,7 @@
           - "Disco: {{ output_var.output[ansible_loop.index0 - 1].DriveLetter }}"
           - "Estado: {{ output_var.output[ansible_loop.index0 - 1].HealthStatus }}"
           - "Size: {{ output_var.output[ansible_loop.index0 - 1].Size }}"
-          - "Disponible MB: {{ output_var.output[ansible_loop.index0 - 1].SizeRemaining }}"
+          - "Disponible MB: {{ output_var.output[ansible_loop.index0 - 1].SizeRemaining % 1024 }}"
       loop: "{{ output_var.output }}"
       loop_control:
         extended: true
