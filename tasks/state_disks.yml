@@ -1,16 +1,8 @@
-# Estado de los discos
+- name: Deshabilitar tareas programadas CSP
+  ansible.windows.win_scheduled_task:
+    name: MicrosoftEdgeUpdateTaskMachineCore
+  register: tasks_var
 
-- name: Check status
-  ansible.windows.win_powershell:
-    script: |
-      Get-Volume | select DriveLetter,HealthStatus
-  register: output_var
-
-- debug:
-    msg:
-      - "Disco: {{ output_var.output[ansible_loop.index0 - 1].DriveLetter }}"
-      - "Estado: {{ output_var.output[ansible_loop.index0 - 1].HealthStatus }}"
-  loop: "{{ output_var.output }}"
-  loop_control:
-    extended: true
-    label: "{{ ansible_loop.index0 }}"
+- name: Debugging
+  debug:
+    msg: "{{ tasks_var }}"
