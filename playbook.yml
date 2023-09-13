@@ -1,0 +1,9 @@
+---
+- name: Check windows Services
+  hosts: all
+  gather_facts: false
+  tasks:
+
+    - name: Windows Services
+      ansible.builtin.include_tasks:
+        file: tasks/check_services.yml
