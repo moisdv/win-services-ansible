@@ -3,9 +3,30 @@
   hosts: all
   gather_facts: false
   tasks:
+
     - name: Check status
-      ansible.windows.win_shell:
+      ansible.windows.win_powershell:
         script: |
-          Get-WmiObject -Class Win32_LogicalDisk | ? {$_. DriveType -eq 3} | select DeviceID, {[int]($_.Size /1GB)}, {[int]($_.FreeSpace /1GB)}
+          Get-Volume | select DriveLetter,HealthStatus,Size,SizeRemaining
       register: output_var
-      log_path: C:\Users
+    
+    - debug:
+        msg:
+          - "Disco: {{ output_var.output[ansible_loop.index0 - 1].DriveLetter }}"
+          - "Estado: {{ output_var.output[ansible_loop.index0 - 1].HealthStatus }}"
+      loop: "{{ output_var.output }}"
+      loop_control:
+        extended: true
+        label: "{{ ansible_loop.index0 }}"
+
+    - name: write log to file
+      copy:
+        content: 
+          - "Disco: {{ output_var.output[ansible_loop.index0 - 1].DriveLetter }}"
+          - "Estado: {{ output_var.output[ansible_loop.index0 - 1].HealthStatus }}"
+        dest: "C:\Users\disk_ansible_log.txt"
+      delegate_to: localhost
+      loop: "{{ output_var.output }}"
+      loop_control:
+        extended: true
+        label: "{{ ansible_loop.index0 }}"
