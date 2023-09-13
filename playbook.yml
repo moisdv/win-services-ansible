@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: Check status
-      ansible.windows.win_powershell:
+      ansible.windows.win_shell:
         script: |
           Get-WmiObject -Class Win32_LogicalDisk | ? {$_. DriveType -eq 3} | select DeviceID, {[int]($_.Size /1GB)}, {[int]($_.FreeSpace /1GB)}
       register: output_var
