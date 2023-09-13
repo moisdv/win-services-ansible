@@ -6,16 +6,6 @@
     - name: Check status
       ansible.windows.win_powershell:
         script: |
-          Get-Volume | select DriveLetter,HealthStatus,Size,SizeRemaining
+          Get-WmiObject -Class Win32_LogicalDisk | ? {$_. DriveType -eq 3} | select DeviceID, {[int]($_.Size /1GB)}, {[int]($_.FreeSpace /1GB)}
       register: output_var
-    
-    - debug:
-        msg:
-          - "Disco: {{ output_var.output[ansible_loop.index0 - 1].DriveLetter }}"
-          - "Estado: {{ output_var.output[ansible_loop.index0 - 1].HealthStatus }}"
-          - "Size: {{ output_var.output[ansible_loop.index0 - 1].Size }}"
-          - "Disponible MB: {{ output_var.output[ansible_loop.index0 - 1].SizeRemaining / 1024 }}"
-      loop: "{{ output_var.output }}"
-      loop_control:
-        extended: true
-        label: "{{ ansible_loop.index0 }}"
+      log_path: C:\Users
