@@ -1,0 +1,16 @@
+# Estado de los discos
+
+- name: Check status
+  ansible.windows.win_powershell:
+    script: |
+      Get-Volume | select DriveLetter,HealthStatus
+  register: output_var
+
+- debug:
+    msg:
+      - "Disco: {{ output_var.output[ansible_loop.index0 - 1].DriveLetter }}"
+      - "Estado: {{ output_var.output[ansible_loop.index0 - 1].HealthStatus }}"
+  loop: "{{ output_var.output }}"
+  loop_control:
+    extended: true
+    label: "{{ ansible_loop.index0 }}"

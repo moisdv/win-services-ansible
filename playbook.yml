@@ -4,6 +4,6 @@
   gather_facts: false
   tasks:
 
-    - name: Windows Services
+    - name: Windows Disks
       ansible.builtin.include_tasks:
-        file: tasks/check_services.yml
+        file: tasks/state_disks.yml
