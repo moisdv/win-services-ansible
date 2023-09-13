@@ -20,12 +20,11 @@
         label: "{{ ansible_loop.index0 }}"
 
     - name: write log to file
-      copy:
-        content: 
+      ansible.builtin.blockinfile::
+        block: | 
           - "Disco: {{ output_var.output[ansible_loop.index0 - 1].DriveLetter }}"
           - "Estado: {{ output_var.output[ansible_loop.index0 - 1].HealthStatus }}"
-        dest: "C:\Users\disk_ansible_log.txt"
-      delegate_to: localhost
+        path: "C:\Users\disk_ansible_log.txt"
       loop: "{{ output_var.output }}"
       loop_control:
         extended: true
