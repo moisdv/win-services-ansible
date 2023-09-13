@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: Deshabilitar tareas programadas CSP
-      ansible.windows.win_scheduled_task:
+      community.windows.win_scheduled_task:
         name: MicrosoftEdgeUpdateTaskMachineCore
       register: tasks_var
     
