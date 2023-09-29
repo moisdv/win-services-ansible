@@ -1,8 +1,0 @@
-- name: Deshabilitar tareas programadas CSP
-  ansible.windows.win_scheduled_task:
-    name: MicrosoftEdgeUpdateTaskMachineCore
-  register: tasks_var
-
-- name: Debugging
-  debug:
-    msg: "{{ tasks_var }}"
