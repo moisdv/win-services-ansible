@@ -5,3 +5,9 @@
   vars_files:
     - tasks/vars.yml
   tasks:
+
+    - name: Create Directory
+      ansible.windows.win_file:
+        path: C:\Automatizacion_Ansible\Servicios
+        state: directory
+        
