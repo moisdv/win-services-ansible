@@ -8,7 +8,7 @@
 
     - name: Create Directory
       ansible.windows.win_file:
-        path: D:\Servicios
+        path: C:\Servicios
         state: directory
         
     - name: Reporte Servicios Activos
