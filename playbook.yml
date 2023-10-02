@@ -11,18 +11,4 @@
         path: C:\Automatizacion_Ansible\Servicios
         state: directory
         
-    - name: Reporte Servicios Activos
-      ansible.windows.win_powershell:
-        script: |
-            $services = New-Object System.Collections.ArrayList
 
-            foreach ($service in (Get-Service | Where-Object -Property Name -match "{{ item }}" | Where-Object -Property Status -match "Running")){
-                $services.Add(@{"Name"= $service.Name; "DisplayName" = $service.DisplayName; "Status" = $service.Status.ToString()}) | Out-Null
-            }
-
-            $payload = @{
-                metrics = @($services)
-            } | ConvertTo-Json
-            
-            echo $payload >> C:\Automatizacion_Ansible\Servicios\ServiciosRunning_{{ ansible_date_time.date }}.json
-      loop: "{{ services }}"
