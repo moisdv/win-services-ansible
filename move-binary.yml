@@ -8,5 +8,4 @@
       ansible.builtin.copy:
         src: /prueba/newrelic-infra.msi
         dest: C:\Program Files (x86)\
-        remote_src: yes
         local_follow: yes
