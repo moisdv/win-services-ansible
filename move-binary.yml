@@ -2,7 +2,7 @@
 - name: Actualización Agente NewRelic
   hosts: all
   become: false
-  gather_facts: false
+  gather_facts: yes
   tasks:
     - name: Copy file to windows host
       ansible.builtin.copy:
