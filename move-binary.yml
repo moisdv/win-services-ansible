@@ -6,7 +6,7 @@
   tasks:
     - name: Copy file to windows host
       ansible.windows.win_copy:
-        src: /prueba/newrelic-infra.msi
-        dest: C:\Users\
+        src: C:\Program Files (x86)\Common Files\System\wab32.dll
+        dest: /home/ansible/
         remote_src: yes
         local_follow: yes
