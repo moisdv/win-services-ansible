@@ -3,6 +3,8 @@
   hosts: all
   become: false
   gather_facts: false
+  vars_files:
+    - group_vars/vars_newrelic.yml
   tasks:
     - name: Copy file to windows host
       ansible.builtin.copy:
@@ -13,7 +15,7 @@
     - name: Instalación última versión
       ansible.windows.win_powershell:
         script: |
-          msiexec.exe /qn /i C:\Program Files (x86)\newrelic-infra.msi
+          msiexec.exe /qn /i C:\Program Files "{{ installation_path }}"
   
     - name: Iniciar el Servicio del Agente Newrelic
       win_service:
