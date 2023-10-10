@@ -7,13 +7,13 @@
     - name: Copy file to windows host
       ansible.builtin.copy:
         src: "/prueba/newrelic-infra.msi"
-        dest: "C:\Program Files (x86)\newrelic-infra.msi"
+        dest: "C:\Program Files\newrelic-infra.msi"
         local_follow: yes
         
     - name: Instalación última versión
       ansible.windows.win_powershell:
         script: |
-          msiexec.exe /qn /i "C:\Program Files (x86)\newrelic-infra.msi"
+          msiexec.exe /qn /i "C:\Program Files\newrelic-infra.msi"
   
     - name: Iniciar el Servicio del Agente Newrelic
       win_service:
