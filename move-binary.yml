@@ -6,5 +6,5 @@
   tasks:
     - name: Copy file to windows host
       copy:
-        src: /tmp/newrelic-infra.msi
+        src: /home/ec2-user/newrelic-infra.msi
         dest: C:\newrelic-infra.msi
