@@ -3,7 +3,7 @@
   hosts: all
   become: false
   gather_facts: false
-  task:
+  tasks:
     - name: Copy file to windows host
       copy:
         src: /tmp/newrelic-infra.msi
