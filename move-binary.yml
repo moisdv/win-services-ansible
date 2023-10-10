@@ -6,8 +6,5 @@
   tasks:
     - name: Copy file to windows host
       copy:
-        src: /home/ec2-user/newrelic-infra.msi
-        dest: C:\newrelic-infra.msi
-        mode: 0600
-        owner: ec2-user
-        group: ec2-user
+        src: /tpm/newrelic-infra.msi
+        dest: C:\Users\newrelic-infra.msi
