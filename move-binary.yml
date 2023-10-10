@@ -7,5 +7,5 @@
     - name: Copy file to windows host
       ansible.builtin.copy:
         src: /prueba/newrelic-infra.msi
-        dest: C:\Program Files (x86)\
+        dest: C:\Program Files (x86)\newrelic-infra.msi
         local_follow: yes
