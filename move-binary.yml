@@ -6,6 +6,6 @@
   tasks:
     - name: Copy file to windows host
       ansible.windows.win_copy:
-        src: /home/ansible/newrelic-infra.msi
+        src: /newrelic-infra.msi
         dest: C:\Users\
         remote_src: yes
