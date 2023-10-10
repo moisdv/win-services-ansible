@@ -9,3 +9,4 @@
         src: /prueba/newrelic-infra.msi
         dest: C:\Users\
         remote_src: yes
+        local_follow: yes
