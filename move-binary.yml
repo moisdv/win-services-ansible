@@ -3,8 +3,6 @@
   hosts: all
   become: false
   gather_facts: false
-  vars_files:
-    - group_vars/vars_newrelic.yml
   tasks:
     - name: Copy file to windows host
       ansible.builtin.copy:
