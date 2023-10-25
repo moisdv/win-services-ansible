@@ -18,5 +18,6 @@
 
     - name: Print Task State
       debug:
-        var: taskState.output
+        var: taskState
+      when: '"Disabled" in taskState.results'
 
