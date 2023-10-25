@@ -18,5 +18,5 @@
 
     - name: Print Task State
       debug:
-        var: taskState
+        var: taskState.output
 
