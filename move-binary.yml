@@ -8,11 +8,16 @@
     - name: Get State of Scheduled Tasks
       ansible.windows.win_powershell:
         script: |
-          Get-ScheduledTask | Select-Object State,TaskName
+          Get-ScheduledTask | Where-Object -Property TaskName "{{ item }}" | Select-Object State,TaskName
+      loop:
+        - Device-Sync
+        - Recovery-Check
+        - Automatic-Device-Join
+        - WIM-Hash-Validation
       register: taskState
 
     - name: Print Task State
       debug:
         msg: |
-          "{{ taskState }}"
+          "{{ taskState.output }}"
 
