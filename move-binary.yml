@@ -4,25 +4,15 @@
   become: false
   gather_facts: yes
   tasks:
-    - name: Copy file to windows host
-      ansible.builtin.copy:
-        src: "/prueba/newrelic-infra.msi"
-        dest: "C:\\Program Files\\newrelic-infra.msi"
-        local_follow: yes
-        
-    - name: Instalación última versión
+  
+    - name: Get State of Scheduled Tasks
       ansible.windows.win_powershell:
         script: |
-          msiexec.exe /qn /i "C:\\Program Files\\newrelic-infra.msi"
-  
-    - name: Iniciar el Servicio del Agente Newrelic
-      win_service:
-        name: newrelic-infra
-        state: started
-        start_mode: auto
-      register: state_service
-  
-    - name: Verificación del estado del servicio
+          Get-ScheduledTask | Select-Object State,TaskName
+      register: taskState
+
+    - name: Print Task State
       debug:
         msg: |
-          "El estado del servicio es: {{ state_service.state }}" 
+          "{{ taskState }}"
+
