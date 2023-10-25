@@ -19,5 +19,5 @@
     - name: Print Task State
       debug:
         msg: |
-          "{{ taskState.output }}"
+          "{{ taskState.results }}"
 
