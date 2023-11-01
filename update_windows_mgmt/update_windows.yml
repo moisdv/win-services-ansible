@@ -1,0 +1,33 @@
+---
+- name: check updates
+  hosts: all
+  become: false
+  gather_facts: yes
+  vars:
+    logDirectory: C:\Users\myLogDirectory
+  tasks:
+
+    - name: Create logs directory
+      ansible.windows.win_file:
+        path: "{{ logDirectory }}"
+        state: directory
+
+    - name: Windows update playbook
+      ansible.windows.win_updates:
+        category_names: "*"
+        reboot: yes
+        reboot_timeout: 3600
+        log_path: C:\Users\AppData\Local\Temp\ansibleLogs\update_logs_{{ansible_date_time.date}}.txt
+      register: win_results
+      changed_when:
+        - win_results.installed_update_count is defined
+        - win_results.installed_update_count > 0
+      failed_when:
+        - win_results.failed_update_count is defined
+        - win_results.failed_update_count > 0
+
+    - name: Get installed updates
+      ansible.windows.win_updates:
+        category_names: "*"
+        state: installed
+        log_path: C:\Users\myLogDirectory\installed_logs_{{ansible_date_time.date}}.txt
