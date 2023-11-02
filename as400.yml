@@ -1,0 +1,9 @@
+---
+- name: Prueba conexion AS400
+  hosts: all
+  gather_facts: false
+  tasks:
+  
+    - name: Return factd
+      ibm.power_ibmi.ibmi_cl_command:
+        cmd: 'uname'
