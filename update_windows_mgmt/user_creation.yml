@@ -4,10 +4,10 @@
   become: false
   gather_facts: true
   tasks:
-    - name: Ensure user bob is present
+    - name: Ensure user is present
       ansible.windows.win_user:
-        name: dricciardo
-        password: 3ncr1pt3d..
+        name: mverstappen
+        password: 3ncr1pt3d!.
         state: present
         groups:
           - Users
