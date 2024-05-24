@@ -1,0 +1,13 @@
+---
+- name: Tareas de cierre
+  hosts: all
+  become: false
+  gather_facts: true
+  tasks:
+    - name: Ensure user bob is present
+      ansible.windows.win_user:
+        name: dricciardo
+        password: 3ncr1pt3d..
+        state: present
+        groups:
+          - Users
