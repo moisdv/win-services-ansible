@@ -2,14 +2,19 @@
 ---
 - name: Get Current Windows Disks State
   hosts: all
-  gather_facts: false
+  gather_facts: yes
   tasks:
 
-    - name: Check status
+    - name: Check Disks Health and Sizes 
       ansible.windows.win_powershell:
         script: |
           Get-Volume | select DriveLetter,HealthStatus,Size,SizeRemaining
       register: output_var
+
+    - name: Generate file report
+      ansible.windows.win_powershell:
+        script: |
+          gwmi win32_logicaldisk | Format-Table DeviceId, MediaType, @{n="Size";e={[math]::Round($_.Size/1GB,2)}},@{n="FreeSpace";e={[math]::Round($_.FreeSpace/1GB,2)}} >> C:\Users\Administrator\Documents\reporteEspacioDisco_{{ ansible_date_time.date }}.txt
 
     - debug:
         msg:
