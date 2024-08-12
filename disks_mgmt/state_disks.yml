@@ -27,6 +27,7 @@
         extended: true
         label: "{{ ansible_loop.index0 }}"
 
-    - fetch:
+    - ansible.windows.win_copy:
         src: C:\Users\Administrator\Documents\reporteEspacioDisco_{{ ansible_date_time.date }}.txt
         dest: /var/reporteEspacioDisco_{{ ansible_date_time.date }}.txt
+        remote_src: true
