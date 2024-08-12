@@ -29,5 +29,5 @@
 
     - ansible.builtin.fetch: 
         src: C:/Users/Administrator/Documents/reporteEspacioDisco_{{ ansible_date_time.date }}.txt 
-        dest: /var/reporteEspacioDisco_{{ ansible_date_time.date }}.txt 
+        dest: /home/ec2-user/
         flat: yes 
