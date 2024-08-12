@@ -36,9 +36,10 @@
           Hola,
           La ejecución de la playbook ha finalizado. Aquí están los resultados de las tareas:
 
-          {% for task in job.tasks %}
-          - {{ task.name }}: {{ task.result }}
-          {% endfor %}
+          - "Disco: {{ output_var.output[ansible_loop.index0 - 1].DriveLetter }}"
+          - "Estado: {{ output_var.output[ansible_loop.index0 - 1].HealthStatus }}"
+          - "Size MB: {{ output_var.output[ansible_loop.index0 - 1].Size }}"
+          - "SizeRemaining MB: {{ output_var.output[ansible_loop.index0 - 1].SizeRemaining }}"
           
           Saludos,
           Ansible Automation Platform
@@ -47,5 +48,9 @@
         attach:
         - C:\Users\Administrator\Documents\reporteEspacioDisco_{{ ansible_date_time.date }}.txt
         charset: utf8
+      loop: "{{ output_var.output }}"
+      loop_control:
+        extended: true
+        label: "{{ ansible_loop.index0 }}"
       delegate_to: localhost
       run_once: true 
