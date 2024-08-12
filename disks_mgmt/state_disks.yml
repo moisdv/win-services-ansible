@@ -45,12 +45,8 @@
           Ansible Automation Platform
         from: testing@ansiblemt.com
         to: yjt10@hotmail.com
-        attach:
-        - C:\Users\Administrator\Documents\reporteEspacioDisco_{{ ansible_date_time.date }}.txt
         charset: utf8
       loop: "{{ output_var.output }}"
       loop_control:
         extended: true
         label: "{{ ansible_loop.index0 }}"
-      delegate_to: 18.118.30.10
-      run_once: true 
