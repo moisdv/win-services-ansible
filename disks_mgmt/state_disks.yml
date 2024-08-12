@@ -31,7 +31,7 @@
       mail:
         host: smtp.freesmtpservers.com
         port: 25
-        Subject: "Ejecución del estado de los discos ejecutada [Ansible]"
+        subject: "Ejecución del estado de los discos ejecutada [Ansible]"
         body: |
           Hola,
           La ejecución de la playbook ha finalizado. Aquí están los resultados de las tareas:
