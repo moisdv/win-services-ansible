@@ -34,7 +34,7 @@
         subject: "Ejecución del estado de los discos ejecutada [Ansible]"
         body: "Aquí tu resultado"
         attach:
-        - C:\Users\Administrator\Documents\reporteEspacioDisco_{{ ansible_date_time.date }}.txt
+        - "C:\Users\Administrator\Documents\reporteEspacioDisco_{{ ansible_date_time.date }}.txt"
         from: testing@ansiblemt.com
         to: yjt10@hotmail.com
         charset: utf8
