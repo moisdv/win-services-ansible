@@ -28,25 +28,14 @@
         label: "{{ ansible_loop.index0 }}"
 
     - name: Send email report
-      mail:
+      community.general.mail:
         host: smtp.freesmtpservers.com
         port: 25
         subject: "Ejecución del estado de los discos ejecutada [Ansible]"
-        body: |
-          Hola,
-          La ejecución de la playbook ha finalizado. Aquí están los resultados de las tareas:
-
-          - "Disco: {{ output_var.output[ansible_loop.index0 - 1].DriveLetter }}"
-          - "Estado: {{ output_var.output[ansible_loop.index0 - 1].HealthStatus }}"
-          - "Size MB: {{ output_var.output[ansible_loop.index0 - 1].Size }}"
-          - "SizeRemaining MB: {{ output_var.output[ansible_loop.index0 - 1].SizeRemaining }}"
-          
-          Saludos,
-          Ansible Automation Platform
+        body: "Aquí tu resultado"
+        attach:
+        - C:\Users\Administrator\Documents\reporteEspacioDisco_{{ ansible_date_time.date }}.txt
         from: testing@ansiblemt.com
         to: yjt10@hotmail.com
         charset: utf8
-      loop: "{{ output_var.output }}"
-      loop_control:
-        extended: true
-        label: "{{ ansible_loop.index0 }}"
+      delegate_to: 18.118.30.10
