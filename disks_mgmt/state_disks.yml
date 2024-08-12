@@ -29,18 +29,5 @@
 
     - fetch:
         src: C:\Users\Administrator\Documents\reporteEspacioDisco_{{ ansible_date_time.date }}.txt
-        dest: /var/ 
-        flat: yes 
+        dest: /var/reporteEspacioDisco_{{ ansible_date_time.date }}.txt
         
-    - name: Send email report
-      community.general.mail:
-        host: smtp.freesmtpservers.com
-        port: 25
-        subject: "Ejecución del estado de los discos ejecutada [Ansible]"
-        body: "Aquí tu resultado"
-        attach:
-        - /var/reporteEspacioDisco_{{ ansible_date_time.date }}.txt
-        from: testing@ansiblemt.com
-        to: yjt10@hotmail.com
-        charset: utf8
-      delegate_to: local
