@@ -43,3 +43,4 @@
         from: testing@ansiblemt.com
         to: yjt10@hotmail.com
         charset: utf8
+      delegate_to: localhost
