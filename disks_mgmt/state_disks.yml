@@ -52,5 +52,5 @@
       loop_control:
         extended: true
         label: "{{ ansible_loop.index0 }}"
-      delegate_to: localhost
+      delegate_to: all
       run_once: true 
