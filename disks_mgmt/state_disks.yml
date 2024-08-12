@@ -28,7 +28,7 @@
         label: "{{ ansible_loop.index0 }}"
 
     - name: Send email report
-      community.general.mail:
+      mail:
         host: smtp.freesmtpservers.com
         port: 25
         subject: "Ejecución del estado de los discos ejecutada [Ansible]"
