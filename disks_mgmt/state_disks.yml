@@ -26,3 +26,26 @@
       loop_control:
         extended: true
         label: "{{ ansible_loop.index0 }}"
+
+    - name: Send email report
+      mail:
+        host: smtp.freesmtpservers.com
+        port: 25
+        Subject: "Ejecución del estado de los discos ejecutada [Ansible]"
+        body: |
+          Hola,
+          La ejecución de la playbook ha finalizado. Aquí están los resultados de las tareas:
+
+          {% for task in job.tasks %}
+          - {{ task.name }}: {{ task.result }}
+          {% endfor %}
+          
+          Saludos,
+          Ansible Automation Platform
+        from: testing@ansiblemt.com
+        to: yjt10@hotmail.com
+        attach:
+        - C:\Users\Administrator\Documents\reporteEspacioDisco_{{ ansible_date_time.date }}.txt
+        charset: utf8
+      delegate_to: localhost
+      run_once: true 
