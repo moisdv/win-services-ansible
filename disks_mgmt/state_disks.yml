@@ -38,17 +38,17 @@
         port: 25
         subject: "Ejecución del estado de los discos ejecutada [Ansible]"
         body: |
-          - "Disco: {{ output_var.output[ansible_loop.index0 - 1].DriveLetter }}"
-          - "Estado: {{ output_var.output[ansible_loop.index0 - 1].HealthStatus }}"
-          - "Size MB: {{ output_var.output[ansible_loop.index0 - 1].Size }}"
-          - "SizeRemaining MB: {{ output_var.output[ansible_loop.index0 - 1].SizeRemaining }}"
+          Reporte de entrega del estado de ejecución de Playbook sobre el host {{ ansible_hostname }}.
+          En el siguiente reporte se atacha el archivo generado para su uso particular. Asimismo, parte del output visible en la consola web
+          de Ansible Automation Platform.
+          
+          - "{{ output_var.output }}"
+
+          Saludos.
+          Nota: este reporte es auto generado y modificado según las necesidades.
         attach:
         - /var/reporteEspacioDisco_{{ ansible_date_time.date }}.txt
         from: testing@ansiblemt.com
         to: yjt10@hotmail.com
         charset: utf8
-      loop: "{{ output_var.output }}"
-      loop_control:
-        extended: true
-        label: "{{ ansible_loop.index0 }}"
       delegate_to: localhost
