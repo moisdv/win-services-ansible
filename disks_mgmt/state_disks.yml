@@ -36,7 +36,7 @@
       community.general.mail:
         host: smtp.freesmtpservers.com
         port: 25
-        subject: "Ejecución del estado de los discos ejecutada [Ansible]"
+        subject: Ansible Playbook Report.
         body: |
           Reporte de entrega del estado de ejecución de Playbook sobre el host {{ ansible_hostname }}.
           En el siguiente reporte se atacha el archivo generado para su uso particular. Asimismo, parte del output visible en la consola web
@@ -50,5 +50,4 @@
         - /var/reporteEspacioDisco_{{ ansible_date_time.date }}.txt
         from: testing@ansibletest.com
         to: yjt10@hotmail.com
-        charset: utf8
       delegate_to: localhost
