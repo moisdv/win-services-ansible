@@ -37,7 +37,7 @@
         host: smtp.freesmtpservers.com
         port: 25
         subject: "Ejecución del estado de los discos ejecutada [Ansible]"
-        body: 
+        body: |
           - "Disco: {{ output_var.output[ansible_loop.index0 - 1].DriveLetter }}"
           - "Estado: {{ output_var.output[ansible_loop.index0 - 1].HealthStatus }}"
           - "Size MB: {{ output_var.output[ansible_loop.index0 - 1].Size }}"
