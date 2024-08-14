@@ -48,6 +48,6 @@
           Nota: este reporte es auto generado y modificado según las necesidades.
         attach:
         - /var/reporteEspacioDisco_{{ ansible_date_time.date }}.txt
-        from: testing@ansibletest.com
-        to: yjt10@hotmail.com
+        from: 
+        to: 
       delegate_to: localhost
