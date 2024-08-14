@@ -37,10 +37,18 @@
         host: smtp.freesmtpservers.com
         port: 25
         subject: "Ejecución del estado de los discos ejecutada [Ansible]"
-        body: "Aquí tu resultado"
+        body: 
+          - "Disco: {{ output_var.output[ansible_loop.index0 - 1].DriveLetter }}"
+          - "Estado: {{ output_var.output[ansible_loop.index0 - 1].HealthStatus }}"
+          - "Size MB: {{ output_var.output[ansible_loop.index0 - 1].Size }}"
+          - "SizeRemaining MB: {{ output_var.output[ansible_loop.index0 - 1].SizeRemaining }}"
         attach:
         - /var/reporteEspacioDisco_{{ ansible_date_time.date }}.txt
         from: testing@ansiblemt.com
         to: yjt10@hotmail.com
         charset: utf8
+      loop: "{{ output_var.output }}"
+      loop_control:
+        extended: true
+        label: "{{ ansible_loop.index0 }}"
       delegate_to: localhost
