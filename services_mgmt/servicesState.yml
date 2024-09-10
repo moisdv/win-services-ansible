@@ -28,7 +28,7 @@
             } | ConvertTo-Json
             
             echo $payload >> "{{ winPath }}_{{ ansible_date_time.date }}.json"
-        loop: "{{ services }}"
+      loop: "{{ services }}"
 
     - name: Reporte Servicios Detenidos
       ansible.windows.win_powershell:
